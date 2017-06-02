@@ -14,7 +14,7 @@ body.landing {
 }
 
 .navbar {
-  padding: 0.5rem
+  padding: 0.5rem;
   background-color:rgb(101,18,95);
 }
 
@@ -28,6 +28,7 @@ body.landing {
   min-height: 600px;
   background-image: no-repeat;
   background-size: cover;
+  background-image: url(../assets/images/bloc_jams_bg.jpg);
 }
 
 .hero-content .hero-title {
@@ -36,6 +37,7 @@ body.landing {
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
   width: 100%;
   text-align: center;
   font-size: 4rem;
@@ -51,7 +53,7 @@ body.landing {
     width: 100%;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 .point {
