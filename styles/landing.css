@@ -36,9 +36,9 @@ body.landing {
     position: relative;
     padding: 2rem;
     text-align: center;
-    opacity: 0;
-    transform: scaleX(0.9) translateY(3rem);
-    transition: all 0.25s ease-in-out;
+    opacity: 0.5;
+    transform: scaleX(0.5) translate(100px, 100px) rotate(360deg);
+    transition: all 4s ease-in-out;
     transition-delay: 0.2s;
 }
 
