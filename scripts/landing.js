@@ -24,18 +24,19 @@
   revealThirdPoint();
 };*/
 //animatePoints();
-
-var revealPoints  = function()  {
+var animatePoints = function()  {
   var points = document.getElementsByClassName('point');
-
-  for(var i=0; i<points.length; i++)  {
-    points[i].style.opacity = 1;
-    points[i].style.transform = 'scaleX(1) translate(-100px, -100px) rotate(-180deg)';
+  var revealPoints  = function(index)  {
+      points[index].style.opacity = 1;
+      points[index].style.transform = 'scaleX(1) translate(0,0) rotate(-180deg)';
   }
-}
+  for(var i=0; i<points.length; i++)  {
+    revealPoints(i);
+  }
+};
 
-revealPoints();
 
 window.onload = function () {
 //  alert('The window has been loaded');
+revealPoints();
 };
