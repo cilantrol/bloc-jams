@@ -38,5 +38,5 @@ var animatePoints = function()  {
 
 window.onload = function () {
 //  alert('The window has been loaded');
-revealPoints();
+animatePoints();
 };
