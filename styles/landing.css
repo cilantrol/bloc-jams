@@ -33,11 +33,14 @@ body.landing {
 }
 
 .point {
-    display: table-cell;
     position: relative;
-    width: 33.3%;
     padding: 2rem;
     text-align: center;
+    opacity: 0;
+    transform: scaleX(0.5) translate(0,0) rotate(-1000deg);
+    transition: all 4s ease-linear;
+    transition-delay: 1s;
+    transition-duration: 3s;
 }
 
 .point .point-title {
