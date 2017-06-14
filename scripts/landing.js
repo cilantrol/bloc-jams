@@ -5,9 +5,8 @@ var animatePoints = function(points)  {
       points[index].style.opacity = 1;
       points[index].style.transform = 'scaleX(1) translate(0,0) rotate(-180deg)';
   }
-  for(var i=0; i<points.length; i++)  {
-    revealPoints(i);
-  }
+
+  pointsArray.forEach(forEach);
 };
 
 
