@@ -1,8 +1,5 @@
-
-
-var points = document.getElementsByClassName('point');
 var forEach = function(a, callBack)  {
-  for( var i=0; i<points.length; i++) {
-    callBack(points[i]);   //this needs to behave like revealPoints(i);
+  for( var i=0; i<a.length; i++) {
+    callBack(a[i]);   //this needs to behave like revealPoints(i);
   }
 };

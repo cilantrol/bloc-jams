@@ -1,12 +1,13 @@
 var pointsArray = document.getElementsByClassName('point');
 
 var animatePoints = function(points)  {
-  var revealPoints  = function(index)  {
-      points[index].style.opacity = 1;
-      points[index].style.transform = 'scaleX(1) translate(0,0) rotate(-180deg)';
+  var revealPoints  = function(point)  {
+      point.style.opacity = 1;
+      point.style.transform = 'scaleX(1) translate(0,100px) rotate(0deg)';
+
   }
 
-  pointsArray.forEach(forEach);
+  forEach(pointsArray, revealPoints);
 };
 
 
