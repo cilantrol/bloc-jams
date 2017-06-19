@@ -1,5 +1,3 @@
-var Album = [albumPicasso, albumMarconi, albumTesting];
-
 var albumPicasso =  {
   title: 'The Colors',
   artist: 'Pablo Picasso',
@@ -43,6 +41,8 @@ var albumTesting =  {
   ]
 };
 
+var Album = [albumPicasso, albumMarconi, albumTesting];
+
 var createSongRow = function(songNumber, songName, songLength){
   var template =
   '<tr class="album-view-song-item">'
@@ -77,17 +77,13 @@ var setCurrentAlbum = function(album){
   }
 };
 
-
-
 window.onload = function()  {
-
-  var alternateCover = function()  {
-    for (var i=0; i<Album.length; i++)  {
-      function(){
-          Album = Album[i];
-          document.getElementsByClassName('albumImage').addEventListener('click',alternateCover());
-      }
-    }
+  var index = 0;
+  setCurrentAlbum(Album[index]);
+  var alternateCover = function (){
+    setCurrentAlbum(Album[index+1]);
+    index ++;
+    (index === Album.length-1) ? index = -1 : '';
   };
-    setCurrentAlbum(Album);
+   document.getElementsByClassName('album-cover-art')[0].addEventListener('click', alternateCover);
 };
