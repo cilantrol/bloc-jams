@@ -40,7 +40,10 @@ var albumTesting =  {
         {title: 'how to get A' , duration: '2:15'}
   ]
 };
+<<<<<<< HEAD
 
+=======
+>>>>>>> 054aafc869b37b421cd25e07411d79993e96cc33
 var Album = [albumPicasso, albumMarconi, albumTesting];
 var createSongRow = function(songNumber, songName, songLength){
   var template =
@@ -52,6 +55,8 @@ var createSongRow = function(songNumber, songName, songLength){
 ;
 return template;
 };
+
+
 
 var setCurrentAlbum = function(album){
   //1
@@ -79,7 +84,18 @@ var setCurrentAlbum = function(album){
 
 
 window.onload = function()  {
+<<<<<<< HEAD
     var index = 0;
     setCurrentAlbum(Album[index]);
     
+=======
+  setCurrentAlbum(Album[0]);
+  var index = 0;
+  var alternateCover = function (){
+    setCurrentAlbum(Album[index+1]);
+    index ++;
+    (index === Album.length-1) ? index = -1 : '';
+  };
+   document.getElementsByClassName('album-cover-art')[0].addEventListener('click', alternateCover); //call the variable not the function itself???
+>>>>>>> 054aafc869b37b421cd25e07411d79993e96cc33
 };
