@@ -1,5 +1,3 @@
-var Album = [albumPicasso, albumMarconi, albumTesting];
-
 var albumPicasso =  {
   title: 'The Colors',
   artist: 'Pablo Picasso',
@@ -42,7 +40,7 @@ var albumTesting =  {
         {title: 'how to get A' , duration: '2:15'}
   ]
 };
-
+var Album = [albumPicasso, albumMarconi, albumTesting];
 var createSongRow = function(songNumber, songName, songLength){
   var template =
   '<tr class="album-view-song-item">'
@@ -53,6 +51,8 @@ var createSongRow = function(songNumber, songName, songLength){
 ;
 return template;
 };
+
+
 
 var setCurrentAlbum = function(album){
   //1
@@ -77,17 +77,13 @@ var setCurrentAlbum = function(album){
   }
 };
 
-
-
 window.onload = function()  {
-
-  var alternateCover = function()  {
-    for (var i=0; i<Album.length; i++)  {
-      function(){
-          Album = Album[i];
-          document.getElementsByClassName('albumImage').addEventListener('click',alternateCover());
-      }
-    }
+  setCurrentAlbum(Album[0]);
+  var index = 0;
+  var alternateCover = function (){
+    setCurrentAlbum(Album[index+1]);
+    index ++;
+    (index === Album.length-1) ? index = -1 : '';
   };
-    setCurrentAlbum(Album);
+   document.getElementsByClassName('album-cover-art')[0].addEventListener('click', alternateCover); //call the variable not the function itself???
 };
