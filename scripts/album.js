@@ -12,7 +12,6 @@ var albumPicasso =  {
         {title: 'Magenta' , duration: '2:15'}
   ]
 };
-
 var albumMarconi =  {
   title: 'The Telephone',
   artist: 'Guglielmo Marconi',
@@ -27,7 +26,22 @@ var albumMarconi =  {
         {title: 'Wrong phone number' , duration: '2:15'}
   ]
 };
+var albumTesting =  {
+  title: 'The Test',
+  artist: 'MC Test',
+  label: 'Beat the Curve Records',
+  year: '2010',
+  albumArtUrl: 'assets/images/album_covers/04.png',
+  songs:   [
+        {title: 'how to get F', duration: '4:26'},
+        {title: 'how to get D' , duration: '3:14'},
+        {title: 'how to get C' , duration: '5:01'},
+        {title: 'how to get B' , duration: '3:21'},
+        {title: 'how to get A' , duration: '2:15'}
+  ]
+};
 
+var Album = [albumPicasso, albumMarconi, albumTesting];
 var createSongRow = function(songNumber, songName, songLength){
   var template =
   '<tr class="album-view-song-item">'
@@ -53,7 +67,7 @@ var setCurrentAlbum = function(album){
   albumReleaseInfo.firstChild.nodeValue = album.year+' '+album.label;
   albumImage.setAttribute('src', album.albumArtUrl);
 
-  //3it 
+  //3it
   albumSongList.innerHTML = '';
 
   //4
@@ -62,6 +76,10 @@ var setCurrentAlbum = function(album){
   }
 };
 
+
+
 window.onload = function()  {
-  setCurrentAlbum(albumMarconi);
+    var index = 0;
+    setCurrentAlbum(Album[index]);
+    
 };
