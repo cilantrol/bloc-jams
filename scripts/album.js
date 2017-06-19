@@ -54,6 +54,8 @@ var createSongRow = function(songNumber, songName, songLength){
 return template;
 };
 
+
+
 var setCurrentAlbum = function(album){
   //1
   var albumTitle = document.getElementsByClassName('album-view-title')[0];
