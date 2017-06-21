@@ -40,10 +40,7 @@ var albumTesting =  {
         {title: 'how to get A' , duration: '2:15'}
   ]
 };
-<<<<<<< HEAD
-=======
 
->>>>>>> 9f1a66cc54943bb55ae02b35f84f5c2eb3c2390d
 var Album = [albumPicasso, albumMarconi, albumTesting];
 var createSongRow = function(songNumber, songName, songLength){
   var template =
