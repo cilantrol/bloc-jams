@@ -40,6 +40,10 @@ var albumTesting =  {
         {title: 'how to get A' , duration: '2:15'}
   ]
 };
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9f1a66cc54943bb55ae02b35f84f5c2eb3c2390d
 var Album = [albumPicasso, albumMarconi, albumTesting];
 var createSongRow = function(songNumber, songName, songLength){
   var template =
@@ -77,13 +81,10 @@ var setCurrentAlbum = function(album){
   }
 };
 
+
+
 window.onload = function()  {
-  setCurrentAlbum(Album[0]);
-  var index = 0;
-  var alternateCover = function (){
-    setCurrentAlbum(Album[index+1]);
-    index ++;
-    (index === Album.length-1) ? index = -1 : '';
-  };
-   document.getElementsByClassName('album-cover-art')[0].addEventListener('click', alternateCover); //call the variable not the function itself???
+    var index = 0;
+    setCurrentAlbum(Album[index]);
+
 };
