@@ -79,24 +79,38 @@ var setCurrentAlbum = function(album){
 
 var songListContainer = document.getElementsByClassName('album-view-song-list')[0];
 var songRows = document.getElementsByClassName('album-view-song-item');
-var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
+var playButtonTemplate =   '<a class="album-song-button"><span class="ion-play"></span></a>';
+var pauseButtonTemplate =  '<a class="album-song-button"><span class="ion-pause"></span></a>';
 
 window.onload = function()  {
   var index = 0;
   setCurrentAlbum(Album[index]); //page has to be loaded first vs putting this at the end.
 
-  songListContainer.addEventListener('mouseover', function(event) {
+  var play = songListContainer.addEventListener('mouseover', function(event) {
     // #1
-    //console.log(event.target);
+    console.log(event.target);
     if(event.target.parentElement.className === 'album-view-song-item'){
       event.target.parentElement.querySelector('.song-item-number').innerHTML = playButtonTemplate;
     }
   });
 
+  var pause = songListContainer.addEventListener('click', function(event){
+
+    if(event.target.parentElement.className === 'album-view-song-item'){
+      event.target.parentElement.querySelector('.song-item-number').innerHTML = pauseButtonTemplate;
+    }
+  });
+
   for (var i=0; i<songRows.length; i++){
     songRows[i].addEventListener('mouseleave', function(event){
-      console.log(this);// this refers to event.target which is the td className album-view-song-item
-      event.target.children[0].innerHTML = event.target.children[0].getAttribute('data-song-number');
+    if ( window.hasEventListener('play') === true )  {
+      this.children[0].innerHTML = this.children[0].getAttribute('data-song-number');
+    }else   {
+        //if addEventListener('click')
+        //  this.children[0].innerHTML = this.children[0].getAttribute('data-song-number');
+
+        // else if both addEventListener click + mouse over active then only show click
+      }
     });
   }
 };
