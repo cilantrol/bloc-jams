@@ -77,26 +77,45 @@ var setCurrentAlbum = function(album){
   }
 };
 
+var findParentByClassName = function()  {
+  var p = document.querySelector('.song-item-number');
+ if (p)
+ document.getElementsByClassName('song-item-number').firstChild;
+
+};
+
+
 var songListContainer = document.getElementsByClassName('album-view-song-list')[0];
 var songRows = document.getElementsByClassName('album-view-song-item');
 var playButtonTemplate =   '<a class="album-song-button"><span class="ion-play"></span></a>';
 var pauseButtonTemplate =  '<a class="album-song-button"><span class="ion-pause"></span></a>';
 
+var d = document.getElementsByClassName('album-view-song-item')[0];
+var childNodefn = function(){
+  for( var i = 0; i < 10; i++){
+    console.log(d.childNodes[i]);
+  }
+ };
+ childNodefn();
+
 window.onload = function()  {
   var index = 0;
   setCurrentAlbum(Album[index]); //page has to be loaded first vs putting this at the end.
 
- songListContainer.addEventListener('mouseover', function(event) {
-    // #1
-    console.log(event.target);
-    if(event.target.parentElement.className === 'album-view-song-item'){
-      event.target.parentElement.querySelector('.song-item-number').innerHTML = playButtonTemplate;
-    }
-  });
+   songListContainer.addEventListener('mouseover', function(event) {
 
-  for (var i=0; i<songRows.length; i++){
-    songRows[i].addEventListener('mouseleave', function(event){
-        this.children[0].innerHTML = this.children[0].getAttribute('data-song-number');
+      if(event.target.parentElement.className === 'album-view-song-item'){
+        event.target.parentElement.querySelector('.song-item-number').innerHTML = playButtonTemplate;
+    /*  }else if(event.target.parentElement.querySelector('.song-item-number').innerHTML === playButtonTemplate){
+        songListContainer.addEventListener('click', function(event){
+          event.target.parentElement.querySelector('.song-item-number').innerHTML = pauseButtonTemplate;
+        });*/
+      }
     });
-  }
+
+    for (var i=0; i<songRows.length; i++){
+      songRows[i].addEventListener('mouseleave', function(event){
+          this.children[0].innerHTML = this.children[0].getAttribute('data-song-number');
+      });
+    }
 };
