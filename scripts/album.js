@@ -77,15 +77,37 @@ var setCurrentAlbum = function(album){
   }
 };
 
-var findParentByClassName = function()  {
-    if (this.parentElement != null){
-      while(element.parentNode){
-        element = element.parentNode;
-        console.log(element);
-      }
+var findParentByClassName = function(startingElement, targetClass)  {
+
+  if(startingElement == null){
+    return; //undefined
+  }
+    var currentElement = startingElement.parentElement;
+    while(currentElement !== null && currentElement.className !== targetClass){
+      currentElement.parentElement;
     }
+    return currentElement;
 };
 
+var getSongItem = function (element){
+  switch(element.className){
+    case 'ion-play':
+    case 'ion-pause':
+    case 'album-song-button':
+      return findParentByClassName(element, 'song-item-number');
+
+    case 'album-view-song-item':
+      return findParentByClassName(element, 'album-view-song-list');
+
+    case 'song-item-number':
+    case 'song-item-title':
+    case 'song-item-duration':
+      return findParentByClassName(element, 'album-view-song-item');
+    default:
+      return;
+
+  }
+};
 
 var songListContainer = document.getElementsByClassName('album-view-song-list')[0];
 var songRows = document.getElementsByClassName('album-view-song-item');
