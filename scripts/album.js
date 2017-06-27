@@ -77,16 +77,15 @@ var setCurrentAlbum = function(album){
   }
 };
 
-var findParentByClassName = function(element, targetClass)  {
-  
-  if(element === null){
-   return; //undefined
-  }
-    var currentElement = element.parentElement;
-    while(currentElement.className !== null && currentElement.className !== targetClass){
-      currentElement.parentElement;
+var findParentByClassName = function(element, targetClass) {
+    if (element === null) {
+      return;
     }
-    return currentElement;
+        var currentParent = element.parentElement;
+        while (currentParent.className !== null && currentParent.className !== targetClass) {
+            currentParent = currentParent.parentElement;
+        }
+        return currentParent;
 };
 
 var getSongItem = function(element) {
@@ -133,7 +132,7 @@ var currentlyPlayingSong = null;
 
 window.onload = function()  {
   var index = 0;
-  setCurrentAlbum(Album[index]); //page has to be loaded first vs putting this at the end.
+  setCurrentAlbum(Album[index]);
 
    songListContainer.addEventListener('mouseover', function(event) {
       if(event.target.parentElement.className === 'album-view-song-item'){
