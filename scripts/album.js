@@ -78,20 +78,19 @@ var setCurrentAlbum = function(album){
 };
 
 var findParentByClassName = function(element, targetClass) {
-    if (!element) {
+    if (element === null) {
       return;
     }
         var currentParent = element.parentElement;
-        if (!currentParent){
-           console.log('no parent found')
-        }
         while (currentParent && currentParent.className !== null && currentParent.className !== targetClass) {
             currentParent = currentParent.parentElement;
         }
-        if (!currentParent){
-           console.log('no parent found')
-        }
-        return currentParent;
+        if(targetClass === undefined) {
+          console.log('no parent found');
+          }else if(currentParent == null){
+            console.log('no parent with that classname');
+          }
+ return currentParent;
 };
 
 var getSongItem = function(element) {
@@ -116,7 +115,9 @@ var clickHandler = function(targetElement){
   var songItem = getSongItem(targetElement);
 
        if (currentlyPlayingSong === null) {
+         //
            songItem.innerHTML = pauseButtonTemplate;
+           //
            currentlyPlayingSong = songItem.getAttribute('data-song-number');
        } else if (currentlyPlayingSong === songItem.getAttribute('data-song-number')) {
            songItem.innerHTML = playButtonTemplate;
