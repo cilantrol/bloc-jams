@@ -11,17 +11,17 @@ var animatePoints = function(points)  {
 };
 
 
-window.onload = function () {
-var sellingPoints = document.getElementsByClassName('selling-points')[0];
-var scrollDistance = sellingPoints.getBoundingClientRect().top - window.innerHeight + 200;
+$(window).load(function)  {
 
-  if (window.innerHeight > 950) {  //for window height > 950 to ensure animatePoints still procs
-    animatePoints(pointsArray);
+var scrollDistance = $('.selling-points').offset().top - $(window).height() + 200;
+
+  if ($(window).height() > 950) {  //for window height > 950 to ensure animatePoints still procs
+    animatePoints();
   }
 
-  window.addEventListener('scroll', function(event) {
-    if (document.documentElement.scrollTop || document.body.scrollTop >= scrollDistance)  {
-      animatePoints(pointsArray);
+  $(window).scroll(function(event) {
+    if ($(window).scrollTop() >= scrollDistance)  {
+      animatePoints();
     }
   });
 };
