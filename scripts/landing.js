@@ -1,17 +1,15 @@
-var pointsArray = document.getElementsByClassName('point');
-
-var animatePoints = function(points)  {
-  var revealPoints  = function(point)  {
-      point.style.opacity = 1;
-      point.style.transform = 'scaleX(1) translate(0,100px) rotate(0deg)';
-
-  }
-
-  forEach(pointsArray, revealPoints);
+var animatePoints= function() {
+  var revealPoint = function() {
+    $(this).css({
+      opacity: 1,
+      transform: 'scaleX(1) translateY(0)'
+    });
+  };
+  $.each($('.point'), revealPoint);
 };
 
 
-$(window).load(function)  {
+$(window).load(function()  {
 
 var scrollDistance = $('.selling-points').offset().top - $(window).height() + 200;
 
@@ -24,4 +22,4 @@ var scrollDistance = $('.selling-points').offset().top - $(window).height() + 20
       animatePoints();
     }
   });
-};
+});
