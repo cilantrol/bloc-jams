@@ -1,56 +1,4 @@
-/*<section class="album-covers container clearfix">
-  <div class="collection-album-container column fourth">
-    <img src="assets/images/album_covers/01.png" alt="">
-    <div class="collection-album-info caption">
-      <p>
-        <a class="album-name" href="album.html">The Colors</a>
-        <br>
-        <a href="album.html">Pablo Picasso</a>
-        <br>
-        X songs
-        <br>
-      </p>
-    </div>
-  </div>
-  <div class="collection-album-container column fourth">
-    <img src="assets/images/album_covers/01.png" alt="">
-    <div class="collection-album-info caption">
-      <p><a class="album-name" href="album.html">The Colors</a>
-      <br>
-      <a href="album.html">Pablo Picasso</a>
-      <br>
-      X songs
-      <br>
-      </p>
-    </div>
-  </div>
-  <div class="collection-album-container column fourth">
-    <img src="assets/images/album_covers/01.png" alt="">
-    <div class="collection-album-info caption">
-      <p><a class="album-name" href="album.html">The Colors</a>
-      <br>
-      <a href="album.html">Pablo Picasso</a>
-      <br>
-      X songs
-      <br>
-      </p>
-    </div>
-  </div>
-  <div class="collection-album-container column fourth">
-    <img src="assets/images/album_covers/01.png" alt="">
-    <div class="collection-album-info caption">
-      <p><a class="album-name" href="album.html">The Colors</a>
-      <br>
-      <a href="album.html">Pablo Picasso</a>
-      <br>
-      X songs
-      <br>
-      </p>
-    </div>
-  </div>
-</section>
-*/
-var collectionItemTemplate =
+/*var collectionItemTemplate =
     '<div class="collection-album-container column fourth">'
   + '  <img src="assets/images/album_covers/01.png"/>'
   + '  <div class="collection-album-info caption">'
@@ -63,16 +11,36 @@ var collectionItemTemplate =
   + '      <br/>'
   + '    </p>'
   + '  </div>'
-  + '</div>';
+  + '</div>';*/
+
+var buildCollectionItemTemplate = function() {
+    var template =
+      '<div class="collection-album-container column fourth">'
+    + '  <img src="assets/images/album_covers/01.png"/>'
+    + '  <div class="collection-album-info caption">'
+    + '    <p>'
+    + '      <a class="album-name" href="album.html"> The Colors </a>'
+    + '      <br/>'
+    + '      <a href="album.html"> Pablo Picasso </a>'
+    + '      <br/>'
+    + '      X songs'
+    + '      <br/>'
+    + '    </p>'
+    + '  </div>'
+    + '</div>'
+    ;
+    return $(template);
+};
 
 
-  window.onload = function() {
-      // #1
-      var collectionContainer = document.getElementsByClassName('album-covers')[0];
-      // #2
-      collectionContainer.innerHTML = '';
-      // #3
+  $(window).load(function(){
+      //var collectionContainer = document.getElementsByClassName('album-covers')[0];
+      var $collectionContainer = $('.album-covers');
+      //collectionContainer.innerHTML = '';
+      $collectionContainer.empty();//why do we want to empty innerHTML?
       for (var i = 0; i < 8; i++) {
-          collectionContainer.innerHTML += collectionItemTemplate;
+        //collectionContainer.innerHTML += collectionItemTemplate;
+        var $newThumbnail = buildCollectionItemTemplate();
+        $collectionContainer.append($newThumbnail);
       }
-  }
+  });
