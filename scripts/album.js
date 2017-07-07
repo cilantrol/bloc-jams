@@ -51,7 +51,38 @@ var createSongRow = function(songNumber, songName, songLength){
 + '  <td class="song-item-duration">' + songLength + '</td>'
 + '</tr>'
 ;
-return $(template);
+var $row = $(template);
+
+if (currentlyPlayingSong === null) {
+    songItem.innerHTML = pauseButtonTemplate;
+    currentlyPlayingSong = songItem.getAttribute('data-song-number');
+} else if (currentlyPlayingSong === songItem.getAttribute('data-song-number')) {
+    songItem.innerHTML = playButtonTemplate;
+    currentlyPlayingSong = null;
+} else if (currentlyPlayingSong !== songItem.getAttribute('data-song-number')) {
+    var currentlyPlayingSongElement = document.querySelector('[data-song-number="' + currentlyPlayingSong + '"]');
+    currentlyPlayingSongElement.innerHTML = currentlyPlayingSongElement.getAttribute('data-song-number');
+    songItem.innerHTML = pauseButtonTemplate;
+    currentlyPlayingSong = songItem.getAttribute('data-song-number');
+}
+
+
+var onHover = function(event) {
+    //mouseover
+    //if currentlyPlayingSong is null
+    //songItem.innerHTML = pauseButtonTemplate
+    //currentlyPlayingSong =songItem.getAttribute('data-song-number')
+
+};
+var offHover = function(event) {
+
+};
+
+$row.find('.song-item-number').click(clickHandler);
+
+$row.hover(onHover, offHover);//mouseleave and mouse enter
+
+return $row;
 };
 
 var setCurrentAlbum = function(album){
@@ -122,9 +153,7 @@ var clickHandler = function(targetElement){
   var songItem = getSongItem(targetElement);
 
        if (currentlyPlayingSong === null) {
-         //
            songItem.innerHTML = pauseButtonTemplate;
-           //
            currentlyPlayingSong = songItem.getAttribute('data-song-number');
        } else if (currentlyPlayingSong === songItem.getAttribute('data-song-number')) {
            songItem.innerHTML = playButtonTemplate;
