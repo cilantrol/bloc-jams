@@ -40,5 +40,3 @@ var albumTesting =  {
         {title: 'how to get A' , duration: '2:15'}
   ]
 };
-
-var Album = [albumPicasso, albumMarconi, albumTesting];
