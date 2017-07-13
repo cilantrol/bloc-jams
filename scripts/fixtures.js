@@ -40,3 +40,16 @@ var albumTesting =  {
         {title: 'how to get A' , duration: '2:15'}
   ]
 };
+
+
+
+
+var nextSong = function() {
+
+    var currentSong = function(currentAlbum, currentSongFromAlbum){
+    currentSong++;
+
+
+    return trackIndex(album, song);
+    };
+};
