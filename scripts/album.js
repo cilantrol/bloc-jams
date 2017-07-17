@@ -9,7 +9,8 @@ var createSongRow = function(songNumber, songName, songLength){
 var $row = $(template);
 
 var clickHandler = function(event) {
-    var songNumber = $(this).attr('data-song-number');
+    var songNumber = parseInt($(this).attr('data-song-number'));
+
     //this replaces songItem which was a switch function
         if (currentlyPlayingSongNumber !== null) {
                  var currentlyPlayingCell = $('.song-item-number[data-song-number="'+currentlyPlayingSongNumber+'"]');
@@ -46,6 +47,7 @@ var offHover = function(event) {
     if (songData !== currentlyPlayingSongNumber){
       $songItem.html(songNumber);
     }
+    console.log("songNumber type is " + typeof songNumber + "\n and currentlyPlayingSongNumber type is " + typeof currentlyPlayingSongNumber);
 };
 
 $row.find('.song-item-number').click(clickHandler);
@@ -143,7 +145,7 @@ var playerBarPlayButton = '<span class="ion-play"></span>';
 var playerBarPauseButton = '<span class="ion-pause"></span>';
 
 var currentAlbum = null;
-var currentlyPlayingSongNumber = null;
+var currentlyPlayingSongNumber = parseInt(null);
 var currentSongFromAlbum = null;
 
 var $previousButton = $('.main-controls .previous');
