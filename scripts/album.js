@@ -13,8 +13,8 @@ var clickHandler = function(event) {
 
 
         if (currentlyPlayingSongNumber !== null) {
-            setSongNumberCell();
-                      
+            setSongNumberCell(currentlyPlayingSongNumber);
+
          }
 
         if (currentlyPlayingSongNumber !== songNumber) {
