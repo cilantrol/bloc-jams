@@ -9,18 +9,17 @@ var createSongRow = function(songNumber, songName, songLength){
 var $row = $(template);
 
 var clickHandler = function(event) {
-    var songNumber = parseInt($(this).attr('data-song-number'));
+    var songNumber = parseInt($('.song-item-number').attr('data-song-number'));
 
-    //this replaces songItem which was a switch function
+
         if (currentlyPlayingSongNumber !== null) {
-                 var currentlyPlayingCell = $('.song-item-number[data-song-number="'+currentlyPlayingSongNumber+'"]');
-                 currentlyPlayingCell.html(currentlyPlayingSongNumber);
+            setSongNumberCell();
+                      
          }
 
         if (currentlyPlayingSongNumber !== songNumber) {
              $(this).html(pauseButtonTemplate);
-             currentlyPlayingSongNumber = songNumber;
-             currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
+             setSong();
              updatePlayerBarSong();
 
         } else if (currentlyPlayingSongNumber === songNumber) {
@@ -109,6 +108,17 @@ var previousSong = function() {
      $lastSongData.html(lastSong);
 };
 
+var setSong = function (songNumber){
+
+
+  currentlyPlayingSongNumber =  songNumber;
+  currentSongFromAlbum = currentAlbum.songs[songNumber - 1]
+};
+
+var setSongNumberCell = function(number){
+
+  return $('.song-item-number[data-song-number="'+currentlyPlayingSongNumber+'"]');
+}
 
 var setCurrentAlbum = function(album) {
   currentAlbum = album;
