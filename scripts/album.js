@@ -14,7 +14,7 @@ var clickHandler = function(event) {
 
         if (currentlyPlayingSongNumber !== null) {
             setSongNumberCell();
-                      
+
          }
 
         if (currentlyPlayingSongNumber !== songNumber) {
@@ -112,7 +112,7 @@ var setSong = function (songNumber){
 
 
   currentlyPlayingSongNumber =  songNumber;
-  currentSongFromAlbum = currentAlbum.songs[songNumber - 1]
+  currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
 };
 
 var setSongNumberCell = function(number){
