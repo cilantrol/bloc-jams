@@ -13,13 +13,16 @@ var clickHandler = function(event) {
 
 
         if (currentlyPlayingSongNumber !== null) {
-            setSongNumberCell();
-
+           var asdf =$('.song-item-number[data-song-number="'+currentlyPlayingSongNumber+'"]');
+            asdf.html(currentlyPlayingSongNumber);
+          //setSongNumberCell();
+          //setSongNumberCell().html(currentlyPlayingSongNumber);
          }
 
         if (currentlyPlayingSongNumber !== songNumber) {
              $(this).html(pauseButtonTemplate);
-             setSong();
+
+             setSong(songNumber);
              updatePlayerBarSong();
 
         } else if (currentlyPlayingSongNumber === songNumber) {
@@ -32,19 +35,20 @@ var clickHandler = function(event) {
 };
 
 var onHover = function(event) {
-    var $songItem = $(this).find('.song-item-number');
-    var songData = $songItem.attr('data-song-number');
+    var songNumberCell = $(this).find('.song-item-number');
+    var songNumber = songNumberCell.attr('data-song-number');
 
-    if (songData !== currentlyPlayingSongNumber){
-      $songItem.html(playButtonTemplate);
+    if (songNumber !== currentlyPlayingSongNumber) {
+        songNumberCell.html(playButtonTemplate);
     }
 };
-var offHover = function(event) {
-    var $songItem = $(this).find('.song-item-number');
-    var songData = $songItem.attr('data-song-number');
 
-    if (songData !== currentlyPlayingSongNumber){
-      $songItem.html(songNumber);
+var offHover = function(event) {
+    var songNumberCell = $(this).find('.song-item-number');
+    var songNumber = songNumberCell.attr('data-song-number');
+
+    if (songNumber !== currentlyPlayingSongNumber) {
+       songNumberCell.html(songNumber);
     }
     console.log("songNumber type is " + typeof songNumber + "\n and currentlyPlayingSongNumber type is " + typeof currentlyPlayingSongNumber);
 };
@@ -109,14 +113,11 @@ var previousSong = function() {
 };
 
 var setSong = function (songNumber){
-
-
   currentlyPlayingSongNumber =  songNumber;
   currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
 };
 
 var setSongNumberCell = function(number){
-
   return $('.song-item-number[data-song-number="'+currentlyPlayingSongNumber+'"]');
 }
 
@@ -155,7 +156,7 @@ var playerBarPlayButton = '<span class="ion-play"></span>';
 var playerBarPauseButton = '<span class="ion-pause"></span>';
 
 var currentAlbum = null;
-var currentlyPlayingSongNumber = parseInt(null);
+var currentlyPlayingSongNumber = null;
 var currentSongFromAlbum = null;
 
 var $previousButton = $('.main-controls .previous');
