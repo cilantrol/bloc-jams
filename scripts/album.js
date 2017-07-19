@@ -34,7 +34,7 @@ var clickHandler = function(event) {
 
 var onHover = function(event) {
     var $songItem = $(this).find('.song-item-number');
-    var songData = $songItem.attr('data-song-number');
+    var songData = parseInt($songItem.attr('data-song-number'));
 
     if (songData !== currentlyPlayingSongNumber){
       $songItem.html(playButtonTemplate);
@@ -42,7 +42,7 @@ var onHover = function(event) {
 };
 var offHover = function(event) {
     var $songItem = $(this).find('.song-item-number');
-    var songData = $songItem.attr('data-song-number');
+    var songData = parseInt($songItem.attr('data-song-number'));
 
     if (songData !== currentlyPlayingSongNumber){
       $songItem.html(songNumber);
