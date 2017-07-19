@@ -18,9 +18,7 @@ var clickHandler = function(event) {
 
         if (currentlyPlayingSongNumber !== songNumber) {
              $(this).html(pauseButtonTemplate);
-             currentlyPlayingSongNumber =  songNumber;
-             currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
-             //setSong(songNumber);
+             setSong(songNumber);
              updatePlayerBarSong();
         } else if (currentlyPlayingSongNumber === songNumber) {
              // Switch from Pause -> Play button to pause currently playing song.
