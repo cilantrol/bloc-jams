@@ -24,7 +24,7 @@ var clickHandler = function(event) {
         } else if (currentlyPlayingSongNumber === songNumber) {
              // Switch from Pause -> Play button to pause currently playing song.
              if ( currentSoundFile.isPaused()){
-              $(this).html(playButtonTemplate);
+              $(this).html(pauseButtonTemplate);
               $('.main-controls .play-pause').html(playerBarPlayButton);
               currentSoundFile.play();
             } else {
