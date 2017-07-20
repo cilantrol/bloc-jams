@@ -17,14 +17,14 @@ var clickHandler = function(event) {
          }
 
         if (currentlyPlayingSongNumber !== songNumber) {
-             $(this).html(pauseButtonTemplate);
              setSong(songNumber);
              currentSoundFile.play();
+             $(this).html(pauseButtonTemplate);
              updatePlayerBarSong();
         } else if (currentlyPlayingSongNumber === songNumber) {
              // Switch from Pause -> Play button to pause currently playing song.
              if ( currentSoundFile.isPaused()){
-              $(this).html(playButtonTemplate);
+              $(this).html(pauseButtonTemplate);
               $('.main-controls .play-pause').html(playerBarPlayButton);
               currentSoundFile.play();
             } else {
@@ -173,16 +173,17 @@ var trackIndex = function(album, song) {
 var togglePlayFromPlayerBar = function()  {
   var $pausePlay = $('.main-controls .play-pause');
   let songNumber = parseInt($(this).attr('data-song-number'));
+  let songNumberCell = $(this).find('.song-item-number');
   $pausePlay.click(function(){
-      if (currentlyPlayingSongNumber !== null){
-        $pausePlay.html(playerBarPlayButton);
-        console.log(currentlyPlayingSongNumber, songNumber);
-      }
-      if (currentlyPlayingSongNumber === songNumber){
-        $pausePlay.html(playerBarPlayButton);
-      } else if (currentlyPlayingSongNumber !== songNumber){
-        $pausePlay.html(playerBarPauseButton);
-      }
+    if ( currentSoundFile.isPaused()){
+     songNumberCell.html(pauseButtonTemplate);
+     $pausePlay.html(playerBarPlayButton);
+     currentSoundFile.play();
+   } else if (currentSoundFile){
+     songNumberCell.html(playButtonTemplate);
+     $pausePlay.html(playerBarPauseButton);
+     currentSoundFile.pause();
+   }
   });
 };
 
