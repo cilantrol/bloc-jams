@@ -175,8 +175,28 @@ var togglePlayFromPlayerBar = function()  {
   let songNumberCell = $(this).find('.song-item-number');
 
   $toggleButton.click(function(){
+    /*I have tried switching playerBarPlay/PauseButton between the blocks and it did make me able to toggle the playerBarPauseButton
+    but then the songNumberCell Template wouldnt always sync up with the playerBar Template
+
+    by removing the if (currentSoundFile exists) conditional I have come to the conclusion that the .isPaused() conditional is working as intended
+    whatever songNumberCell is clicked it would play and pause without problem for THOSE "2" clicks.
+    The 3rd click which is supposed to resume PLAY from PAUSED 'saved' state isnt not working.
+
+    This also leads me to believe my conditional statements do not need extra && or ||
+    because .isPaused() is working as intended and the buttons toggle to reflect that only for the first 2 clicks
+
+    My next assumption is to switch the conditional blocks to see if it was a matter of order.
+    1. ran if(currentSoundFile) as 1st conditional => did not change outcome
+    2. nested .isPaused() inside conditional if(currentSoundFile) => did not change outcome
+
+    At this point I know the if(currentSoundFile) conditional is the problem
+    but i have followed the instructions clearly so i dont know what's wrong.
+    I have also tried incorporating elements from the clickHandler function but i know that also is incorrect
+    This has nothing to do with currentlyPlayingSongNumber*/
+
 
     if ( currentSoundFile.isPaused()){            //If a song is paused and the play button is clicked in the player bar, it will
+
      songNumberCell.html(pauseButtonTemplate);    //Change the song number cell from a play button to a pause button
      $toggleButton.html(playerBarPauseButton);    //Change the HTML of the player bar's play button to a pause button
      currentSoundFile.play();                     //Play the song
