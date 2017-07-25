@@ -3,7 +3,7 @@ var createSongRow = function(songNumber, songName, songLength){
     '<tr class="album-view-song-item">'
     + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber +  '</td>'
     + '  <td class="song-item-title">' + songName + '</td>'
-    + '  <td class="song-item-duration">' + songLength + '</td>'
+    + '  <td class="song-item-duration">' + filterTimeCode(songLength) + '</td>'
     + '</tr>'
 ;
 var $row = $(template);
@@ -23,7 +23,7 @@ var clickHandler = function(event) {
              updateSeekBarWhileSongPlays();
              $(this).html(pauseButtonTemplate);
              updatePlayerBarSong();
-             //setVolume(currentVolume);
+             //setVolume(currentVolume) defaults by using css properties @ 80%
              var $volumeFill = $('.volume .fill');
              var $volumeThumb = $('.control-group .thumb');
              //thumb is bar length
@@ -278,6 +278,9 @@ var updateSeekBarWhileSongPlays = function () {
       var $seekBar = $('.seek-control .seek-bar');
 
       updateSeekPercentage($seekBar, seekBarFillRatio);
+      //Wrap the arguments passed to setCurrentTimeInPlayerBar() and setTotalTimeInPlayerBar() in a filterTimeCode() call so the time output below the seek bar is formatted.
+      filterTimeCode(setCurrentTimeInPlayerBar(this.getTime()));
+      filterTimeCode(setTotalTimeInPlayerBar(this.getDuration()));
     })
   }
 };
@@ -286,6 +289,30 @@ var seek = function(time){
   if (currentSoundFile){
     currentSoundFile.setTime(time);
   }
+};
+
+//Write a function called setCurrentTimeInPlayerBar() that takes one argument, currentTime, that sets the text of the element with the .current-time class to the current time in the song.
+var setCurrentTimeInPlayerBar = function(currentTime){
+  $('.current-time').text(currentTime);
+};
+//Write a function called setTotalTimeInPlayerBar() that takes one argument, totalTime, that sets the text of the element with the .total-time class to the length of the song.
+var setTotalTimeInPlayerBar = function(totalTime){
+  $('.total-time').text(totalTime);
+};
+//Write a function called filterTimeCode that takes one argument, timeInSeconds. It should:
+var filterTimeCode = function(timeInSeconds){
+  //Use the parseFloat() method to get the seconds in number form.
+  var realTime = parseFloat(timeInSeconds);
+  //console.log(realTime);
+  //Store variables for whole seconds and whole minutes (hint: use Math.floor() to round numbers down).
+  var wholeSeconds = Math.floor(realTime  % 60);
+  var wholeMinutes = Math.floor(realTime  / 60);
+  if (wholeSeconds > 60){
+    wholeMinutes+=1;
+  }
+  //Return the time in the format X:XX
+  var MMSS = wholeMinutes+':'+wholeSeconds;
+  return MMSS;
 };
 
 var playButtonTemplate =   '<a class="album-song-button"><span class="ion-play"></span></a>',
