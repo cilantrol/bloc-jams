@@ -279,9 +279,9 @@ var updateSeekBarWhileSongPlays = function () {
 
       updateSeekPercentage($seekBar, seekBarFillRatio);
       //Wrap the arguments passed to setCurrentTimeInPlayerBar() and setTotalTimeInPlayerBar() in a filterTimeCode() call so the time output below the seek bar is formatted.
-      filterTimeCode(setCurrentTimeInPlayerBar(this.getTime()));
-      filterTimeCode(setTotalTimeInPlayerBar(this.getDuration()));
-    })
+      setCurrentTimeInPlayerBar(filterTimeCode(this.getTime()));
+      setTotalTimeInPlayerBar(filterTimeCode(this.getDuration()));
+    });
   }
 };
 
@@ -307,9 +307,7 @@ var filterTimeCode = function(timeInSeconds){
   //Store variables for whole seconds and whole minutes (hint: use Math.floor() to round numbers down).
   var wholeSeconds = Math.floor(realTime  % 60);
   var wholeMinutes = Math.floor(realTime  / 60);
-  if (wholeSeconds > 60){
-    wholeMinutes+=1;
-  }
+
   //Return the time in the format X:XX
   var MMSS = wholeMinutes+':'+wholeSeconds;
   return MMSS;
