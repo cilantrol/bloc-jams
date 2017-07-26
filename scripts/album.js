@@ -251,10 +251,12 @@ var setupSeekBars = function () {
       var barWidth = $seekBar.width();
       var seekBarFillRatio = offsetX / barWidth;
 
-      if ( $(this).parent().attr('class') == 'seek-control' ){
+      if ( $seekBar.parent().attr('class') == 'seek-control' ){
         //If it's the playback seek bar, seek to the position of the song determined by the seekBarFillRatio
         seek( seekBarFillRatio * currentSoundFile.getDuration() );
-      }
+      }else {
+                setVolume(seekBarFillRatio);
+            }
 
       updateSeekPercentage($seekBar, seekBarFillRatio);
     });
@@ -321,8 +323,8 @@ var defaults = function () {
   $volumeFill.width(currentVolume + '%');
   $volumeThumb.css({  left: currentVolume + '%'  });
 
-  $seekFill.width(cTime + '%');
-  $seekThumb.css({    left: cTime + '%'  });
+  //$seekFill.width(cTime + '%');
+  //$seekThumb.css({    left: cTime + '%'  });
 };
 
 var playButtonTemplate =   '<a class="album-song-button"><span class="ion-play"></span></a>',
@@ -343,7 +345,7 @@ var playButtonTemplate =   '<a class="album-song-button"><span class="ion-play">
     $seekBars = $('.player-bar .seek-bar'),
 
     $volumeFill = $('.volume .fill'),
-    $volumeThumb = $('.control-group .thumb'),
+    $volumeThumb = $('.volume .thumb'),
     $seekFill = $('.seek-control .fill'),
     $seekThumb = $('.seek-control .thumb');
 
@@ -354,5 +356,6 @@ $(document).ready(function(){
   $nextButton.click(nextSong);
   $playerBarToggleButton.click(togglePlayFromPlayerBar);
   setupSeekBars();
-  defaults();
+  //defaults();
+  setVolume(80);
 });
