@@ -51,7 +51,7 @@ var offHover = function(event) {
     if (songNumber !== currentlyPlayingSongNumber) {
        songNumberCell.html(songNumber);
     }
-    console.log("songNumber type is " + typeof songNumber + "\n and currentlyPlayingSongNumber type is " + typeof currentlyPlayingSongNumber);
+  //  console.log("songNumber type is " + typeof songNumber + "\n and currentlyPlayingSongNumber type is " + typeof currentlyPlayingSongNumber);
 };
 
 $row.find('.song-item-number').click(clickHandler);
@@ -171,19 +171,22 @@ var trackIndex = function(album, song) {
 };
 
 var togglePlayFromPlayerBar = function()  {
-  var $pausePlay = $('.main-controls .play-pause');
-  let songNumber = parseInt($(this).attr('data-song-number'));
+  var $toggleButton = $('.main-controls .play-pause');
+  //let ****songNumber = parseInt($(this).attr('data-song-number'));
   let songNumberCell = $(this).find('.song-item-number');
-  $pausePlay.click(function(){
-    if ( currentSoundFile.isPaused()){
-     songNumberCell.html(pauseButtonTemplate);
-     $pausePlay.html(playerBarPlayButton);
-     currentSoundFile.play();
-   } else if (currentSoundFile){
-     songNumberCell.html(playButtonTemplate);
-     $pausePlay.html(playerBarPauseButton);
-     currentSoundFile.pause();
+
+  $toggleButton.click(function(){
+
+    if ( currentSoundFile ) {
+      songNumberCell.html(playButtonTemplate);
+      $toggleButton.html(playerBarPlayButton);
+      currentSoundFile.pause();
    }
+    if ( currentSoundFile.isPaused() ){
+      songNumberCell.html(pauseButtonTemplate);
+      $toggleButton.html(playerBarPauseButton);
+      currentSoundFile.play();
+    }
   });
 };
 
